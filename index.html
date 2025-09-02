@@ -5,24 +5,148 @@
     <title>About Roshni Barui</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; }
-        .container { max-width: 700px; margin: 40px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 32px; }
-        h1 { color: #264653; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(135deg, #f9f9f9 0%, #e9c46a 100%);
+            margin: 0; 
+            padding: 0;
+            animation: bgMove 8s infinite alternate;
+        }
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        .container { 
+            max-width: 700px; 
+            margin: 40px auto; 
+            background: #fff; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12); 
+            padding: 40px; 
+            position: relative;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        h1 { color: #264653; text-align: center; letter-spacing: 2px; }
         h2 { color: #2a9d8f; margin-top: 32px; }
         ul { margin: 0; padding-left: 20px; }
-        .tag { display: inline-block; background: #e9c46a; color: #264653; border-radius: 12px; padding: 4px 12px; margin: 2px 4px; font-size: 0.95em; }
+        .tag { 
+            display: inline-block; 
+            background: linear-gradient(90deg, #e9c46a 60%, #f4a261 100%);
+            color: #264653; 
+            border-radius: 12px; 
+            padding: 4px 12px; 
+            margin: 2px 4px; 
+            font-size: 0.95em; 
+            transition: transform 0.3s;
+        }
+        .tag:hover {
+            transform: scale(1.08);
+            box-shadow: 0 2px 8px #e9c46aaa;
+        }
         .bio { margin-bottom: 24px; }
-        .section { margin-bottom: 24px; }
+        .section { margin-bottom: 28px; }
+        .contact-info {
+            background: #2a9d8f22;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            animation: pulseContact 1.5s infinite alternate;
+        }
+        @keyframes pulseContact {
+            from { box-shadow: 0 0 0 #2a9d8f22; }
+            to { box-shadow: 0 0 24px #2a9d8f44; }
+        }
+        .login-btn {
+            display: block;
+            width: 120px;
+            margin: 0 auto 24px auto;
+            padding: 10px 0;
+            background: linear-gradient(90deg, #2a9d8f 60%, #e76f51 100%);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 24px;
+            font-size: 1.05em;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #e76f5188;
+            transition: background 0.3s, transform 0.2s;
+            animation: bounce 2s infinite;
+        }
+        .login-btn:hover {
+            background: linear-gradient(90deg, #e76f51 60%, #2a9d8f 100%);
+            transform: scale(1.07);
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px);}
+        }
+        /* Modal styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 99; 
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto;
+            background: rgba(38,70,83,0.25);
+            animation: modalFade 0.5s;
+        }
+        @keyframes modalFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background: #fff;
+            margin: 8% auto;
+            padding: 28px 36px;
+            border-radius: 12px;
+            max-width: 350px;
+            box-shadow: 0 4px 16px #26465344;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s;
+        }
+        .close {
+            position: absolute;
+            top: 8px; right: 14px;
+            font-size: 24px;
+            color: #264653;
+            cursor: pointer;
+        }
+        .login-input {
+            width: 90%;
+            margin: 12px 0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #2a9d8f44;
+            font-size: 1em;
+        }
+        .submit-btn {
+            background: #2a9d8f;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 18px;
+            font-size: 1em;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover { background: #e76f51; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Roshni Barui</h1>
+        <button class="login-btn" onclick="openModal()">Login</button>
         <p class="bio">
             <strong>Age:</strong> 18<br>
             <strong>Student:</strong> BE CSE Sem 1 at BMSIT<br>
         </p>
-
         <div class="section">
             <h2>Education</h2>
             <ul>
@@ -30,7 +154,6 @@
                 <li><strong>Grade XII (PCMC):</strong> St. Francis Composite PU College (2025) – 94.7%</li>
             </ul>
         </div>
-
         <div class="section">
             <h2>Sports & Achievements</h2>
             <ul>
@@ -38,14 +161,12 @@
                 <li>Taekwondo: 4th Dan Black Belt Athlete</li>
             </ul>
         </div>
-
         <div class="section">
             <h2>Hobbies</h2>
             <span class="tag">Reading</span>
             <span class="tag">Listening to Music</span>
             <span class="tag">Playing Badminton</span>
         </div>
-
         <div class="section">
             <h2>Interests & Skills</h2>
             <ul>
@@ -57,6 +178,40 @@
                 </li>
             </ul>
         </div>
+        <div class="section contact-info">
+            <h2>Contact Me</h2>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:roshnibarui13@gmail.com" style="color:#e76f51;">roshnibarui13@gmail.com</a></li>
+                <li><strong>Phone:</strong> <a href="tel:6758675890" style="color:#2a9d8f;">6758675890</a></li>
+            </ul>
+        </div>
     </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Login</h2>
+            <form onsubmit="event.preventDefault(); alert('Login submitted!'); closeModal();">
+                <input class="login-input" type="text" placeholder="Username" required><br>
+                <input class="login-input" type="password" placeholder="Password" required><br>
+                <button class="submit-btn" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function openModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            var modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
